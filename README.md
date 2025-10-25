@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 # Creator-surge-
-## Creator-surge-
-
 [![CI](https://github.com/Anubis-studios/Creator-surge-/actions/workflows/ci.yml/badge.svg)](https://github.com/Anubis-studios/Creator-surge-/actions/workflows/ci.yml)
 
 Social media
@@ -32,5 +29,3 @@ npm test
 
 ```powershell
 npm run dev
-```
->>>>>>> 4d59459 (chore: update CI badge with repo URL)
