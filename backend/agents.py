@@ -17,11 +17,11 @@ class AgentSystem:
         }
         return system_messages.get(agent_type, system_messages["text"])
     
-    async def generate_response(self, message: str, agent_type: str = "text", conversation_history: list = None) -> str:
-        """Generate AI response using specified agent type"""
+    async def generate_response(self, message: str, agent_type: str = "text", conversation_id: str = None, conversation_history: list = None) -> str:
+        """Generate AI response using specified agent type with conversation memory"""
         try:
-            # Create unique session ID for this conversation
-            session_id = f"session_{agent_type}"
+            # Create unique session ID based on conversation ID for memory persistence
+            session_id = f"conv_{conversation_id}_{agent_type}" if conversation_id else f"session_{agent_type}"
             
             # Initialize chat with system message
             chat = LlmChat(
@@ -33,8 +33,24 @@ class AgentSystem:
             # Use GPT-4o-mini for faster responses
             chat.with_model("openai", "gpt-4o-mini")
             
-            # Create user message
-            user_message = UserMessage(text=message)
+            # Build context from conversation history
+            context_message = message
+            if conversation_history and len(conversation_history) > 0:
+                # Include last 10 messages for context (to avoid token limits)
+                recent_history = conversation_history[-10:] if len(conversation_history) > 10 else conversation_history
+                
+                # Build context string
+                context_parts = ["Previous conversation context:\n"]
+                for hist_msg in recent_history:
+                    role = "User" if hist_msg.get('role') == 'user' else "Assistant"
+                    content = hist_msg.get('content', '')
+                    context_parts.append(f"{role}: {content}")
+                
+                context_parts.append(f"\nCurrent message:\nUser: {message}")
+                context_message = "\n".join(context_parts)
+            
+            # Create user message with context
+            user_message = UserMessage(text=context_message)
             
             # Send message and get response
             response = await chat.send_message(user_message)
