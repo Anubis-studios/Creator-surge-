@@ -71,15 +71,15 @@ const Landing = () => {
           
           <h1 className="text-6xl md:text-7xl font-bold leading-tight">
             <span className="bg-gradient-to-r from-purple-600 via-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Create, Innovate,
+              Build Apps with AI,
             </span>
             <br />
             <span className="text-slate-900">Surge Forward</span>
           </h1>
           
           <p className="text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
-            Unleash your creativity with AI-powered assistance. From writing and coding to strategic planning, 
-            Creator Surge AI is your intelligent partner for everything.
+            From idea to deployment-ready code in minutes. Multi-agent AI system for app development, 
+            coding, strategy, and creative content. Your intelligent partner for building anything.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
