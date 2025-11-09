@@ -95,10 +95,21 @@ async def delete_conversation(conversation_id: str):
 
 @api_router.post("/chat", response_model=ChatResponse)
 async def chat(request: ChatRequest):
-    """Send message and get AI response"""
+    """Send message and get AI response with conversation memory"""
     try:
         # Auto-detect agent type if not specified
         agent_type = request.agentType or agent_system.detect_agent_type(request.message)
+        
+        # Get conversation history for context
+        history_messages = await db.messages.find(
+            {"conversationId": request.conversationId}
+        ).sort("timestamp", 1).to_list(100)
+        
+        # Convert to dict format for agent system
+        conversation_history = [
+            {"role": msg.get("role"), "content": msg.get("content")}
+            for msg in history_messages
+        ]
         
         # Create user message
         user_message = Message(
@@ -112,10 +123,12 @@ async def chat(request: ChatRequest):
         # Save user message to database
         await db.messages.insert_one(user_message.dict())
         
-        # Get AI response
+        # Get AI response with conversation context
         ai_response_text = await agent_system.generate_response(
             message=request.message,
-            agent_type=agent_type
+            agent_type=agent_type,
+            conversation_id=request.conversationId,
+            conversation_history=conversation_history
         )
         
         # Create AI message
