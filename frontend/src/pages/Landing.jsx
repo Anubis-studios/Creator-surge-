@@ -8,9 +8,9 @@ const Landing = () => {
 
   const features = [
     {
-      icon: MessageSquare,
-      title: 'Intelligent Conversations',
-      description: 'Engage in natural, context-aware conversations powered by advanced AI'
+      icon: Zap,
+      title: 'Full App Builder',
+      description: 'Build complete applications with AI - from idea to deployment-ready code'
     },
     {
       icon: Code,
@@ -18,8 +18,13 @@ const Landing = () => {
       description: 'Get help with coding, debugging, and technical problem-solving'
     },
     {
+      icon: MessageSquare,
+      title: 'Multi-Agent System',
+      description: 'Specialized AI agents for different tasks - auto-detects or manual selection'
+    },
+    {
       icon: Palette,
-      title: 'Creative Writing',
+      title: 'Creative Content',
       description: 'Generate stories, articles, and creative content effortlessly'
     },
     {
@@ -28,14 +33,9 @@ const Landing = () => {
       description: 'Develop strategies, analyze data, and make informed decisions'
     },
     {
-      icon: Zap,
+      icon: Sparkles,
       title: 'Lightning Fast',
       description: 'Get instant responses with our optimized AI infrastructure'
-    },
-    {
-      icon: Sparkles,
-      title: 'Always Learning',
-      description: 'Continuous improvements and updates for better performance'
     }
   ];
 
