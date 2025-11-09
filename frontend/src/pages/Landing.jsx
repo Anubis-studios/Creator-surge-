@@ -78,9 +78,24 @@ const Landing = () => {
           </h1>
           
           <p className="text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
-            From idea to deployment-ready code in minutes. Multi-agent AI system for app development, 
-            coding, strategy, and creative content. Your intelligent partner for building anything.
+            From idea to deployment-ready code in minutes. Multi-agent AI system with persistent memory 
+            for app development, coding, strategy, and creative content. Your intelligent partner for building anything.
           </p>
+          
+          <div className="flex flex-wrap justify-center gap-3 mt-6">
+            <div className="px-4 py-2 bg-white rounded-full border border-purple-200 text-sm font-medium text-slate-700">
+              🧠 Agent Memory
+            </div>
+            <div className="px-4 py-2 bg-white rounded-full border border-purple-200 text-sm font-medium text-slate-700">
+              ⚡ 5 Specialized Agents
+            </div>
+            <div className="px-4 py-2 bg-white rounded-full border border-purple-200 text-sm font-medium text-slate-700">
+              🚀 Full App Builder
+            </div>
+            <div className="px-4 py-2 bg-white rounded-full border border-purple-200 text-sm font-medium text-slate-700">
+              💾 Persistent Chats
+            </div>
+          </div>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
             <Button 
