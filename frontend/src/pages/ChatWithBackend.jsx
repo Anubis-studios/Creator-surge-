@@ -41,8 +41,17 @@ const ChatWithBackend = () => {
 
   // Load conversations on mount
   useEffect(() => {
-    loadConversations();
+    initializeChat();
   }, []);
+
+  const initializeChat = async () => {
+    await loadConversations();
+    // If no conversations exist, create one
+    const convs = await conversationAPI.getAll();
+    if (convs.length === 0) {
+      await handleNewChat();
+    }
+  };
 
   // Load messages when active conversation changes
   useEffect(() => {
