@@ -30,7 +30,7 @@ class ConversationCreate(BaseModel):
 class ChatRequest(BaseModel):
     conversationId: str
     message: str
-    agentType: Optional[str] = "text"  # "text", "code", "image", "strategy"
+    agentType: Optional[str] = None  # "text", "code", "image", "strategy"
 
 class ChatResponse(BaseModel):
     userMessage: Message
