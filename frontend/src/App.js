@@ -1,7 +1,7 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import LandingEmergentStyle from "./pages/LandingEmergentStyle";
-import ChatWithBackend from "./pages/ChatWithBackend";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Dashboard from "./pages/Dashboard";
+import ProjectDetail from "./pages/ProjectDetail";
 import { Toaster } from "./components/ui/toaster";
 
 function App() {
@@ -9,8 +9,9 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<LandingEmergentStyle />} />
-          <Route path="/chat" element={<ChatWithBackend />} />
+          <Route path="/" element={<Navigate to="/dashboard" replace />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/project/:projectId" element={<ProjectDetail />} />
         </Routes>
       </BrowserRouter>
       <Toaster />
