@@ -48,6 +48,12 @@ class AgentSystem:
         """Automatically detect which agent should handle the message"""
         message_lower = message.lower()
         
+        # App builder keywords (check first - highest priority)
+        appbuilder_keywords = ['build app', 'create app', 'build application', 'create application',
+                              'full stack', 'deploy app', 'web app', 'mobile app', 'mvp',
+                              'build website', 'create website', 'build a', 'make an app',
+                              'develop app', 'app development', 'full project', 'complete app']
+        
         # Code-related keywords
         code_keywords = ['code', 'function', 'debug', 'programming', 'python', 'javascript', 
                         'java', 'algorithm', 'api', 'bug', 'error', 'syntax', 'compile']
@@ -60,8 +66,10 @@ class AgentSystem:
         strategy_keywords = ['strategy', 'business', 'marketing', 'plan', 'growth', 
                            'startup', 'launch', 'campaign', 'roi', 'kpi', 'market']
         
-        # Check for keywords
-        if any(keyword in message_lower for keyword in code_keywords):
+        # Check for keywords (app builder takes precedence)
+        if any(keyword in message_lower for keyword in appbuilder_keywords):
+            return "appbuilder"
+        elif any(keyword in message_lower for keyword in code_keywords):
             return "code"
         elif any(keyword in message_lower for keyword in image_keywords):
             return "image"
